@@ -1,0 +1,7 @@
+docker run -ti \
+           --rm \
+           --name=cot \
+           -u 1000:1000 \
+           -e DISPLAY=$DISPLAY \
+           -v /tmp/.X11-unix:/tmp/.X11-unix \
+           nsa/cot
