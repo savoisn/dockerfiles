@@ -23,4 +23,4 @@ ENV DEBUG	1
 RUN make \
 	&& make install
 
-ENTRYPOINT [ "/usr/local/bin/mdp", "sample.md" ]
+ENTRYPOINT ["/usr/local/bin/mdp" ]
