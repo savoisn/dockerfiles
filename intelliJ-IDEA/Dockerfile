@@ -6,7 +6,7 @@ RUN sed 's/main$/main universe/' -i /etc/apt/sources.list && \
     add-apt-repository ppa:webupd8team/java -y && \
     apt-get update && \
     echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
-    apt-get install -y oracle-java8-installer libxext-dev libxrender-dev libxtst-dev && \
+    apt-get install -y oracle-java8-installer libxext-dev libxrender-dev libxtst-dev unzip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
@@ -19,15 +19,20 @@ RUN apt-get update && apt-get install -y libgtk2.0-0 libcanberra-gtk-module
     #echo 'Installing eclipse' && \
     #tar -xf /tmp/eclipse.tar.gz -C /opt && \
     #rm /tmp/eclipse.tar.gz
-RUN wget https://download-cf.jetbrains.com/idea/ideaIC-2016.3.4.tar.gz -O /tmp/idea.tar.gz -q && \
-      echo 'Installing Idea' && \
-      tar -xf /tmp/idea.tar.gz -C /opt
+RUN wget https://download-cf.jetbrains.com/idea/ideaIC-2016.3.4.tar.gz -O /tmp/idea.tar.gz -q
+RUN echo 'Installing Idea' && \
+    tar -xf /tmp/idea.tar.gz -C /opt &&\
+    mv /opt/idea-* /opt/idea/
+
+RUN wget https://services.gradle.org/distributions/gradle-3.3-bin.zip -O /tmp/gradle-3.3-bin.zip -q && \
+      mkdir /opt/gradle && \
+      echo 'Installing Graddle' && \
+      unzip -d /opt/gradle /tmp/gradle-3.3-bin.zip
 
 #RUN chown -R 1000:1000 /opt/idea
 
 #RUN mkdir -p /Projects
 
-
 #WORKDIR /Projects
-CMD /opt/idea-IC-163.12024.16/bin/idea.sh
+CMD /opt/idea/bin/idea.sh
 
