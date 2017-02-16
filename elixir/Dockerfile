@@ -38,6 +38,7 @@ RUN ls -la /home/
 USER nico
 
 RUN mix local.hex --force
+RUN mix local.rebar --force
 RUN wget -q  https://github.com/phoenixframework/archives/raw/master/phoenix_new-1.2.1.ez -O /tmp/phoenix_new-1.2.1.ez
 RUN mix archive.install --force /tmp/phoenix_new-1.2.1.ez
 
