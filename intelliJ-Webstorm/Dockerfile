@@ -19,11 +19,19 @@ RUN apt-get update && apt-get install -y libgtk2.0-0 libcanberra-gtk-module
     #echo 'Installing eclipse' && \
     #tar -xf /tmp/eclipse.tar.gz -C /opt && \
     #rm /tmp/eclipse.tar.gz
-RUN wget https://download-cf.jetbrains.com/idea/ideaIC-2016.3.4.tar.gz -O /tmp/idea.tar.gz -q
 RUN wget https://download.jetbrains.com/webstorm/WebStorm-2016.3.3.tar.gz -O /tmp/webstorm.tar.gz -q
 RUN echo 'Installing Idea' && \
     tar -xf /tmp/webstorm.tar.gz -C /opt &&\
-    mv /opt/webstorm-* /opt/webstorm/
+    mv /opt/WebStorm-* /opt/webstorm/
+
+RUN apt-get update && apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
+    apt-get install -y nodejs
+
+RUN wget http://plugins.jetbrains.com/plugin/download?pr=idea_ce\&updateId=31805 -O /tmp/IdeaVIM.zip -q 
+RUN echo 'installing plugins' && \
+    unzip /tmp/IdeaVIM.zip -d /opt/webstorm/plugins/
+
 
 
 #RUN chown -R 1000:1000 /opt/idea
