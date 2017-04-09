@@ -10,7 +10,8 @@ ENV ELIXIR_VERSION="v1.4.1" \
 
 #RUN apk --update add openssl ncurses erlang inotify-tools && rm -rf /var/cache/apk/*
 RUN apt-get update 
-RUN apt-get install -y wget openssl inotify-tools unzip curl
+RUN apt-get update 
+RUN apt-get install -y wget openssl inotify-tools unzip curl git
 RUN wget http://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
 RUN dpkg -i erlang-solutions_1.0_all.deb
 RUN apt-get update
@@ -35,12 +36,20 @@ ENV LC_ALL en_US.UTF-8
 RUN useradd -d /home/nico/ -m nico
 RUN ls -la /home/
 
+RUN apt-get update 
+RUN apt-get install -y build-essential
+
+RUN npm install -g elm@0.18
+
 USER nico
 
 RUN mix local.hex --force
 RUN mix local.rebar --force
 RUN wget -q  https://github.com/phoenixframework/archives/raw/master/phoenix_new-1.2.1.ez -O /tmp/phoenix_new-1.2.1.ez
 RUN mix archive.install --force /tmp/phoenix_new-1.2.1.ez
+
+RUN wget -q  https://github.com/riverrun/openmaize/raw/master/installer/archives/openmaize_phx.ez -O /tmp/openmaize_phx.ez
+RUN mix archive.install --force /tmp/openmaize_phx.ez
 
 CMD elixir --version && mix --version && iex --version && npm --version && node --version
 
