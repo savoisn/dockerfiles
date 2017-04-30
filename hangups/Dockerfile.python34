@@ -1,12 +1,13 @@
-FROM python:3.6.1-alpine
+FROM python:3.4
 MAINTAINER Nicolas SAVOIS
 
 RUN addgroup --gid 1000 nico \
 	&& adduser --disabled-login --home /home/nico --gid 1000 -u 1000 nico
 
 RUN pip3 install hangups
-RUN apk update
-RUN apk add libnotify libdbus
+RUN apt-get update
+RUN apt-get install -y libnotify-bin vim
+RUN apt-get install -y libdbus-1-dev libdbus-glib-1-dev
 RUN pip3 install dbus-python
 
 WORKDIR /home/nico
