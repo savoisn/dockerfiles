@@ -17,7 +17,6 @@ RUN	apt-get update && apt-get install -y \
 	dirmngr \
 	gnupg \
 	--no-install-recommends \
-	&& apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886 \
 	&& echo "deb http://repository.spotify.com stable non-free" >> /etc/apt/sources.list.d/spotify.list \
 	&& echo "deb http://ftp.de.debian.org/debian jessie main " >> /etc/apt/sources.list.d/workaround.list \
 	&& apt-get update && apt-get install -y \
@@ -31,6 +30,7 @@ RUN	apt-get update && apt-get install -y \
 	spotify-client \
 	xdg-utils \
 	--no-install-recommends \
+  --allow-unauthenticated \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV HOME /home/spotify
