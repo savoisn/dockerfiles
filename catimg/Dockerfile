@@ -18,5 +18,7 @@ RUN cmake . \
 COPY img/ /img/
 
 
-ENTRYPOINT [ "/bin/bash", "-i", "-c", "sleep 0.1 && ./bin/catimg /img/smaller.gif"  ]
+#ENTRYPOINT [ "/bin/bash", "-i", "-c", "sleep 0.1 && ./bin/catimg /img/generator-logo.png"  ]
+
+CMD "/bin/bash"
 
