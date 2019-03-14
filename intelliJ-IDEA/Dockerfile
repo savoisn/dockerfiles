@@ -15,19 +15,25 @@ RUN sed 's/main$/main universe/' -i /etc/apt/sources.list && \
 # the netbeans image
 RUN apt-get update && apt-get install -y libgtk2.0-0 libcanberra-gtk-module
 
-#RUN wget http://eclipse.c3sl.ufpr.br/technology/epp/downloads/release/mars/2/eclipse-jee-mars-2-linux-gtk-x86_64.tar.gz -O /tmp/eclipse.tar.gz -q && \
-    #echo 'Installing eclipse' && \
-    #tar -xf /tmp/eclipse.tar.gz -C /opt && \
-    #rm /tmp/eclipse.tar.gz
-RUN wget https://download-cf.jetbrains.com/idea/ideaIC-2016.3.4.tar.gz -O /tmp/idea.tar.gz -q
+RUN wget https://downloads.gradle.org/distributions/gradle-4.10.3-bin.zip -O /tmp/gradle-bin.zip -q && \
+      mkdir /opt/gradle && \
+      echo 'Installing Graddle' && \
+      unzip -d /opt/gradle /tmp/gradle-bin.zip
+
+#RUN wget https://download-cf.jetbrains.com/idea/ideaIC-2016.3.4.tar.gz -O /tmp/idea.tar.gz -q
+#RUN wget https://download-cf.jetbrains.com/idea/ideaIU-2017.3.1.tar.gz -O /tmp/idea.tar.gz -q
+#RUN wget https://download-cf.jetbrains.com/idea/ideaIU-2018.1.1.tar.gz -O /tmp/idea.tar.gz -q
+#RUN wget https://download-cf.jetbrains.com/idea/ideaIU-2018.1.4.tar.gz -O /tmp/idea.tar.gz -q
+#RUN https://download.jetbrains.com/idea/ideaIU-2018.2.5.tar.gz -O /tmp/idea.tar.gz -q
+#RUN wget https://download-cf.jetbrains.com/idea/ideaIU-2018.2.5.tar.gz -O /tmp/idea.tar.gz -q
+#RUN wget https://download.jetbrains.com/idea/ideaIU-2018.3.tar.gz -O /tmp/idea.tar.gz -q
+#RUN wget https://download-cf.jetbrains.com/idea/ideaIU-2018.3.1.tar.gz -O /tmp/idea.tar.gz -q
+#RUN wget https://download-cf.jetbrains.com/idea/ideaIU-2018.3.2.tar.gz -O /tmp/idea.tar.gz -q
+RUN wget https://download-cf.jetbrains.com/idea/ideaIU-2018.3.4.tar.gz -O /tmp/idea.tar.gz -q
+ 
 RUN echo 'Installing Idea' && \
     tar -xf /tmp/idea.tar.gz -C /opt &&\
     mv /opt/idea-* /opt/idea/
-
-RUN wget https://services.gradle.org/distributions/gradle-3.3-bin.zip -O /tmp/gradle-3.3-bin.zip -q && \
-      mkdir /opt/gradle && \
-      echo 'Installing Graddle' && \
-      unzip -d /opt/gradle /tmp/gradle-3.3-bin.zip
 
 #RUN chown -R 1000:1000 /opt/idea
 

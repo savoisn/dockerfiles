@@ -18,11 +18,12 @@ RUN apt-get update && \
       libxkbfile1 \
       libxss1 \
       libxtst6 \
+      libsecret-1-0 \
       python \
 			libx11-xcb-dev \
       xdg-utils && \
     apt-get clean && \
-    curl -L https://go.microsoft.com/fwlink/?LinkID=760868 > /tmp/vscode.deb && \
+    curl -L https://az764295.vo.msecnd.net/stable/79b44aa704ce542d8ca4a3cc44cfca566e7720f1/code_1.21.1-1521038896_amd64.deb > /tmp/vscode.deb && \
     dpkg -i /tmp/vscode.deb && \
 		apt-get install -f && \
     rm -rf /var/lib/apt/lists/* && \
@@ -33,4 +34,4 @@ USER vscode
     #rm -f /tmp/vscode.deb && \
 
 
-CMD ["/usr/bin/code","-w"]
+CMD ["/usr/bin/code-insiders","-w"]
